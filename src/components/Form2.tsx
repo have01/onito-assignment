@@ -9,10 +9,10 @@ import { useDispatch } from "react-redux";
 import { v4 as uuidv4 } from "uuid";
 
 type FormValues = {
-  address: string;
-  city: string;
-  country: string;
-  pincode: number;
+  address?: string;
+  city?: string;
+  country?: string;
+  pincode?: number;
 };
 
 type Form1Props = {

@@ -5,6 +5,7 @@ import { Button, MenuItem, TextField } from "@mui/material";
 import * as yup from "yup";
 import { submitFirstForm } from "../redux/formSlice";
 import { useDispatch } from "react-redux";
+import Error from "./Error";
 
 type FormValues = {
   name: string;
@@ -60,11 +61,7 @@ const Form1: React.FC<Form1Props> = ({ setStep }) => {
                 className=""
                 required
               />
-              {firstFormError?.name && (
-                <p className="text-red-500 font-bold text-sm ml-2">
-                  {firstFormError?.name}
-                </p>
-              )}
+              <Error props={{ errorName: firstFormError?.name }} />
             </div>
             <div className="flex justify-between">
               <div className="">
@@ -75,11 +72,7 @@ const Form1: React.FC<Form1Props> = ({ setStep }) => {
                   required
                   type="string"
                 />
-                {firstFormError?.age && (
-                  <p className="text-red-500 font-bold text-sm ml-2">
-                    {firstFormError?.age}
-                  </p>
-                )}
+                <Error props={{ errorName: firstFormError?.age }} />
               </div>
             </div>
           </div>
@@ -107,11 +100,7 @@ const Form1: React.FC<Form1Props> = ({ setStep }) => {
                   required
                   type="tel"
                 />
-                {firstFormError?.mobile && (
-                  <p className="text-red-500 font-bold text-sm ml-2">
-                    {firstFormError?.mobile}
-                  </p>
-                )}
+                <Error props={{ errorName: firstFormError?.mobile }} />
               </div>
             </div>
           </div>
@@ -148,15 +137,10 @@ const Form1: React.FC<Form1Props> = ({ setStep }) => {
                     required
                   />
                 )}
-                {firstFormError?.[id] && (
-                  <p className="text-red-500 font-bold text-sm ml-4">
-                    {firstFormError?.[id]}
-                  </p>
-                )}
+                <Error props={{ errorName: firstFormError?.[id] }} />
               </div>
             )}
           </div>
-
           <div className="flex  w-full pl-2 mt-2">
             <Button type="submit" variant="contained">
               Next

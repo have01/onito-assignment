@@ -6,6 +6,12 @@ type props = {
   countryName: string;
   setCountryName: React.Dispatch<React.SetStateAction<string>>;
 };
+type Country = {
+  name: {
+    common: string;
+  };
+  cca2: string;
+};
 const Country: React.FC<props> = ({ countryName, setCountryName }) => {
   const [showList, setShowList] = useState<boolean>(true);
 
@@ -16,7 +22,6 @@ const Country: React.FC<props> = ({ countryName, setCountryName }) => {
     setShowList(false);
   };
   const handleCountryName = (country: string) => {
-    console.log(countryName);
     setShowList(true);
     setCountryName(country);
   };
@@ -34,8 +39,8 @@ const Country: React.FC<props> = ({ countryName, setCountryName }) => {
           <ul className="w-[285px] max-h-40 overflow-y-auto shadow-md bg-white py-2 text-sm text-gray-700  ">
             {countries.map((country) => (
               <li
-                key={country.cca2}
-                onClick={() => handleSelectCountry(country.name.common)}
+                key={country?.cca2}
+                onClick={() => handleSelectCountry(country?.name?.common)}
                 className="max-h-20  px-2 py-2  w-full cursor-pointer hover:bg-slate-200"
               >
                 {country?.name?.common}
