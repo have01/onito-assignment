@@ -20,7 +20,7 @@ const formsSlice = createSlice({
       console.log("!", action.payload);
       state.formDataObject = action.payload;
     },
-    submitSecondForm: (state, action: PayloadAction<Record<string, any>>) => {
+    submitForm: (state, action: PayloadAction<Record<string, any>>) => {
       console.log("!!", action.payload);
 
       const combinedData = {
@@ -34,5 +34,5 @@ const formsSlice = createSlice({
   },
 });
 
-export const { submitFirstForm, submitSecondForm } = formsSlice.actions;
+export const { submitFirstForm, submitForm } = formsSlice.actions;
 export default formsSlice.reducer;

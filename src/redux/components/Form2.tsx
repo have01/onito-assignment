@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { validationSchema2 } from "../utils/validationSchema";
+import { validationSchema2 } from "../../utils/validationSchema";
 import { Button, TextField } from "@mui/material";
 import * as yup from "yup";
 import Country from "./Country";
-import { submitSecondForm } from "../redux/formSlice";
+import { submitSecondForm } from "../formSlice";
 import { useDispatch } from "react-redux";
 import { v4 as uuidv4 } from "uuid";
 

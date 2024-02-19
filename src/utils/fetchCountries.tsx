@@ -25,7 +25,7 @@ export const FetchCountries = (countryName: string): FetchCountriesHook => {
             `https://restcountries.com/v3.1/name/${debouncedCountryName}`
           );
 
-          if (response && response.data) {
+          if (response?.data) {
             setCountries(response.data);
           }
         } else {

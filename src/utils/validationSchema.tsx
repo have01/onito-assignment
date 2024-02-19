@@ -1,35 +1,32 @@
 import * as yup from "yup";
 
-export const validationSchema1 = yup.object().shape({
+export const validationSchema = yup.object({
   name: yup
     .string()
     .required("Name is required")
-    .min(3, "Name be at least 3 char"),
-  age: yup.number().typeError("age must be a number"),
+    .min(3, "Name must be at least 3 characters"),
+  age: yup
+    .number()
+    .required("Age is required")
+    .typeError("Age must be a number")
+    .positive("Age must be a positive number")
+    .integer("Age must be an integer"),
+  sex: yup.string(),
+  email: yup.string().email("Invalid email format"),
   mobile: yup
     .string()
-    .test("isIndianMobile", "Invalid Indian Mobile Number", (value) => {
+    .nullable()
+    .test("isValidMobile", "Invalid Mobile Number", (value) => {
       const indianMobileRegex = /^[6-9]\d{9}$/;
-      return indianMobileRegex.test(value);
+      const bangladeshiMobileRegex = /^(?:\+?88)?01[3-9]\d{8}$/;
+      return !value || (indianMobileRegex.test(value) || bangladeshiMobileRegex.test(value));
     }),
+  guardian: yup.string(),
+  guardianlabel: yup.string().when('guardian', {
+    is: (value) => value?.length > 0,
+    then: (schema) => console.log(schema),
+    otherwise: (schema) => schema.min(0),
+  }),
 
-  aadhar: yup
-    .string()
-    .optional()
-    .matches(
-      /^[2-9]\d{11}$/,
-      "Must be 12 digits and should not start with 0 or 1"
-    ),
 });
 
-export const validationSchema2 = yup.object().shape({
-  address: yup.string().optional(),
-  state: yup.string().optional(),
-  city: yup.string().optional(),
-  country: yup.string().optional(),
-  // country: yup.string().required().matches('Country is required'),
-  pincode: yup
-    .string()
-    .notRequired()
-    .matches(/^\d*$/, "Pincode must be numeric"),
-});
